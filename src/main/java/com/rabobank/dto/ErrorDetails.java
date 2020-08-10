@@ -1,0 +1,19 @@
+package com.rabobank.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ErrorDetails {
+
+	private String result;
+
+	private List<ErrorRecords> errorRecords = new ArrayList<ErrorRecords>();
+
+}
