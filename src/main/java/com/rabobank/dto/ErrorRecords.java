@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorRecords {
-
 	private Long reference;
 	private String accountNumber;
-
 }

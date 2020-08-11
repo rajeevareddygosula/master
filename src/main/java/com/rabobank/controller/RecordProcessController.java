@@ -32,7 +32,6 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping(value = "/api")
 @Api(value = "Rest APIs")
 public class RecordProcessController extends ResponseEntityExceptionHandler {
-
 	@Autowired
 	private RecordService recordService;
 	private ErrorDetails errorDetails;
@@ -41,33 +40,23 @@ public class RecordProcessController extends ResponseEntityExceptionHandler {
 	@ApiOperation(value = "processing customer statment", response = Iterable.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "SUCCESSFUL"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "Something went wrong with server. Please try after some times") })
 	public ResponseEntity<?> processStatement(@RequestBody List<@Valid Record> record) {
-
 		try {
 			errorDetails = recordService.processStatement(record);
-
 			return ResponseEntity.ok(errorDetails);
-
 		} catch (Exception e) {
 			errorDetails = new ErrorDetails();
-
 			errorDetails.setResult(Constants.INTERNAL_SERVER_ERROR);
-
 			return new ResponseEntity<Object>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
-
 		errorDetails = new ErrorDetails();
-
 		errorDetails.setResult(Constants.BAD_REQUEST);
-
 		return new ResponseEntity<Object>(errorDetails, HttpStatus.BAD_REQUEST);
-
 	}
 }

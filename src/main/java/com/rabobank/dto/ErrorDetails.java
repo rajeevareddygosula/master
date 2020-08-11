@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorDetails {
-
 	private String result;
-
 	private List<ErrorRecords> errorRecords = new ArrayList<ErrorRecords>();
-
 }
